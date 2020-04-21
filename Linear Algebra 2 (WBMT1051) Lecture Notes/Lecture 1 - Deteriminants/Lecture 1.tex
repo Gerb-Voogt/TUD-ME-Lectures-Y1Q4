@@ -1,0 +1,130 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{0}
+\setcounter{equation}{0}
+\section{Linear Algebra 2 Lecture 1: Determinants (21/04/2020)}
+
+
+\subsection{Definition of determinants}
+The determinant of a $2 \times 2$ matrix $A$ is defined as:
+\begin{gather}
+  \text{det}(A) = |A| = 
+  \begin{vmatrix}
+    a & b\\
+    c & d\\
+  \end{vmatrix}
+  = ad - bc
+\end{gather}
+The determinant of a $3 \times 3$ matrix can be written in terms of the triple scalar product, where the columns of $A$ form the vectors $\vec{a}_1$, $\vec{a}_2$ and $\vec{a}_3$:
+\begin{gather}
+  \text{det}(A) = 
+  \begin{vmatrix}
+    \vec{a}_1 & \vec{a}_2 & \vec{a}_3\\ 
+  \end{vmatrix}
+  = \vec{a}_1 \cdot (\vec{a}_2 \times \vec{a}_3)
+\end{gather} 
+
+The determinant can be used to determin whether a matrix is invertible or not. A random $n \times n$ matrix $A$ is invertible iff $\text{det}(A) \neq 0$. In other words: The matrix $A$ is row equivalent to $I_n$ iff it has a non-zero determinant.
+\begin{gather}
+  \begin{bmatrix}[c|c]
+    A & I_n\\
+  \end{bmatrix}
+  \sim
+  \begin{bmatrix}[c|c]
+    I_n & A^{-1}\\
+  \end{bmatrix}
+  \text{ iff } \text{det}(A) \neq 0
+\end{gather}
+\\
+Quick proof for this statement for a $2 \times 2$ matrix:\\
+If a matrix is not invertible it's columns must be linearly dependent.
+\begin{gather}
+  A = 
+  \begin{bmatrix}
+    a & \lambda a\\
+    c & \lambda c\\
+  \end{bmatrix}
+  \rightarrow
+  \text{det}(A) = \lambda ac - \lambda ac = 0 \qed
+\end{gather}
+
+
+\subsection{Cofactors and cofactor expansion}
+A cofactor is a number which can be associated with an element of a square matrix. For example:
+let $A$ be an $n \times n$ matrix. The $(i,j)$-cofactor is defined as:
+\begin{equation}
+  C_{ij} = (-1)^{i+j}\text{det}(A_{ij})
+\end{equation}
+Where $A_{ij}$ is the matrix obtained from $A$ by deleting row $i$ and column $j$.
+Cofactors can be used to compute determinants. Let $A$ be an $n \times n$ matrix. Pick any random row $r$ is $A$. Then:
+\begin{equation}
+  \text{det}(A) = a_{r1}C_{r1} + \cdots + a_{rn}C_{rn} = \sum_{i=1}^{n} a_{ri}C_{ri}
+\end{equation}
+Where $a_{ij}$ are the elements of $A$ on row $i$ and column $j$. This equation holds for any random row or column in $A$. Pick a random column $k$ in $A$, then also:
+\begin{equation}
+  \text{det}(A)= \sum_{i=1}^{n} a_{ik}C_{ik}
+\end{equation}
+
+
+\subsection{Triangular matrices}
+Let $A$ be an $n \times n$ matrix:
+\begin{itemize}
+  \item The main diagonal is the diagonal from top left to bottom right in the matrix. These are the entries with equal row and column number ($a_{nn}$).
+  \item A is upper triangular if all the entries below the main diagonal are 0.
+  \item A is lower triangular if all the entries above the main diagonal are 0.
+\end{itemize}
+For triangular matrices the following holds:
+The determinant is equal to the product of the main entries:
+\begin{equation}
+  \text{det}(A) = a_{11}a_{22} \cdots a_{nn} = \prod_{i=1}^{n} a_{ii}
+\end{equation}
+
+
+\subsection{Determinants and row operations}
+The determinant of a matrix changes with row reduction. Luckily it changes in a very predictable way. Let $B$ be a matrix obtained by performing one elementry row operation on matrix $A$.
+\begin{itemize}
+  \item Interchange 2 rows $\Rightarrow |B| = -|A|$
+  \item Multiply one row by a constant $\lambda$ $\Rightarrow |B| = \lambda|A|$
+  \item Add a multiple of one row to another $\Rightarrow |B| = |A|$
+\end{itemize}
+
+\end{document}
