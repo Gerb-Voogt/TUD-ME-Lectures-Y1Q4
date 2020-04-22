@@ -46,47 +46,73 @@
 
 
 \subsection{The first law for a closed system}
-The first law of thermodynamics for a closed system takes the following form:
+The first law of thermodynamics states the following: Energy can be transformed from one form to another, however it cannot be created or destroyed. The first law of thermodynamics for a closed system takes the following form\footnote{Sometimes also written as $Q + W$ rather then $Q - W$, but this is just a sign convention depending on which direction of work is taken to be positive.}:
 \begin{equation}
-  \Delta KE + \Delta PE + \Delta U = Q - W
+  \Delta KE + \Delta PE + \Delta U = \Delta E = Q - W
 \end{equation}
-Where $\Delta KE$ is the kinetic energy, $\Delta PE$ is the potential energy, $\Delta U$ the internal energy, $Q$ heat and $W$ the work done.
-
+Where $\Delta KE$ is the kinetic energy, $\Delta PE$ is the potential energy, $\Delta U$ the internal energy and $\Delta E$ the change in the total energy of the system.\\
+Energy can be transferred from and into a system in 3 forms: heat transfer $Q$, work transfer $W$ and mass flow $m$. Thus the total differnce in energy is described as:
+\begin{equation}
+  \Delta E_{system} = E_{in} - E_{out} = (Q_{in} - Q_{out}) + (W_{in} - W_{out}) + (E_{mass,in} - E_{mass,out})
+\end{equation}
+Where the subscripts $in$ and $out$ denote the quantities that enter and leave the system. This subscript can be thought of as the direction of the energy. The flow of energy in a system can also be expressed as a flow rate by taking the time derrivative of the previous expression:
+\begin{equation}
+  \dot{E}_{in} - \dot{E}_{out} = \frac{dE_{system}}{dt}
+\end{equation}
+For a closed system this expression becomes:
+\begin{equation}
+  \frac{dE_{system}}{dt} = \dot{Q} - \dot{W}
+\end{equation}
 
 \subsection{Internal energies of a system}
-The internal energies of a system are a microscopic phenomena. Examples of this are kinetic energy of atoms (translational and rotational), vibrations of atoms, chemical energies, nuclear energy, lattice energy, etc. Though statisical mechanics has gone a long way in explaining the exact nature of these internal energy we usually do not concern ourselfs with these in classical thermodynamics. Instead we make a simplified approximation of the total sum of these energies, which is close enough for the systems we concern ourselfs with in classical thermodynamics. The equation for internal energy used in classical thermodynamics is:
+The internal energies of a system are a microscopic phenomena. Examples of this are kinetic energy of atoms (translational and rotational), vibrations of atoms, chemical energies, nuclear energy, lattice energy, etc. Though statisical mechanics has gone a long way in explaining the exact nature of these internal energy we usually do not concern ourselfs with these in classical thermodynamics. The internal energy of a system in differential form can be written as:
+\begin{gather}
+  \Delta E_{system} = Q - W\\
+  dU = \delta Q - \delta W
+\end{gather}
+It's also worth noting that the internal energy of an ideal gas can be expressed as:
 \begin{equation}
   U = cmT
 \end{equation}
-where $c$ is the heat capacity.
-
+Where $c$ is the heat capacity at constant volume. 
 
 \subsection{Heat and work in thermodynamics}
 Mechanical work done is usually described with the following integral:
 \begin{equation}
   W = \int_{s1}^{s2} \vec{F}\cdot d\vec{s}
 \end{equation}
-However note that the work done as described by the integral is dependent on the path taken. In other words, it is a process variable. Because of the scope of classical thermodynamics only concerning itself with systems in equilibrium in time indendent states usually use the following integral notation:
+The understanding of work needs to be extended a bit for thermodynamics. In thermodynamics any energy interaction not caused by a difference in temperature is considered work. Thus electral energy entering a system can be considered worl. However note that works as described mechanically is a process variable. This holds for all types of work in thermodynamics. Because of this the following integral can only be eveluated when some details about the process are known, which is not the case for classical thermodynamics:
 \begin{equation}
   W = \int_1^2 \delta W
 \end{equation}
-Where the $\delta$ is used to denote an inexact differential. Using this $\delta$ automatically implies path dependence which in the scope of classical thermodynamics cannot be expressed. Note the expression for the first law where the LHS contains only state variables, while the RHS only contains process variables.
+Where the $\delta$ is used to denote an inexact differential. Using this $\delta$ automatically implies path dependence. Note the expression for the first law where the LHS contains only state variables, while the RHS only contains process variables. This idea of inexact differentials applies to all process variables. Thus the total differential difference in energy of a system can be expressed as:
+\begin{equation}
+  \delta E_{in} - \delta E_{out} = dE_{system}
+\end{equation}
+For a system undergoing a cycle we can state that $\Delta E_{system} = 0\,J$. This leads to the following conclusion:
+\begin{equation}
+  W_{net,out} = Q_{net,in}
+\end{equation}
 
 
-\subsection{A thermodynamic cylinder system}
-SIDE NOTE: THIS SECTION NEEDS TO BE IMPROVED LATER
-Consider a cylinder with a volume $V$. The gas inside this cylinder has a pressure $p$. The work done by the plunger moving back a distance of $x$ can be described with the following equations:
-\begin{gather}
+\subsection{Modeling expansion or compression work}
+Consider a cylinder with a volume $V$. The gas inside this cylinder has a pressure $p$ and the piston has an area $A$. The force acting on the piston can then be described as:
+\begin{equation}
   F = pA\\
-  \delta W_{12} = F\,ds = pA\,dx = p\,dV
+\end{equation}
+The work done by the system can then be formulated as follows:
+\begin{gather}
+  \delta W_{12} = F\,ds = pA\,dx = p\,dV\\
+  W = \int_{V_1}^{V_2} p\,dV
 \end{gather}
+Note that the previous integral can be evaluated because it is only dependent on state variables (i.e. Volume). By sign convention this is negative work if the volume increases since this is work done by the system itself. When the volume decreases this is work done on the system thus increasing the total energy. 
 \begin{gather}
   \delta W = p\,dV, \quad dU = mc\,dT\\
-  -p\,dV = dU\\
-  -\delta W = dU
+  -\delta W = dU\\
+  -p\,dV = mc\,dT
 \end{gather}
 \begin{figure}[h!]
   \centerline{\includegraphics[width=50mm]{images/Work Done.png}}
-  \caption{Situation of the moving plunger}
+  \caption{Situation of the moving piston}
 \end{figure}
 \end{document}
