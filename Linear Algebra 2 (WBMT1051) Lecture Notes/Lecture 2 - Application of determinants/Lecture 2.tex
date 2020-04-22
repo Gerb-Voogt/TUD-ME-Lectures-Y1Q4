@@ -1,0 +1,70 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{1}
+\setcounter{equation}{0}
+
+\section{Linear Algebra 2 Lecture 2: Application of Determinants (24/04/2020)}
+
+
+\subsection{Properties of the determinant}
+The determinant is \underline{not} a linear mapping, but it does behave similarly to one. Let $A$ and $B$ be $n \times n$ matrices, then:
+\begin{itemize}
+  \item $|cA| = c^n|A|$ for each $c \in \R$
+  \item $|A^T| = |A|$
+  \item $A^{-1}$ exists if $|A| \neq 0$
+  \item $|A^{-1}|=\frac{1}{|A|}$ 
+  \item $|AB| = |A| \cdot |B|$
+\end{itemize}
+
+
+\subsection{The determinant as volume and area}
+When working with $2$ or $3$ dimensional space the can be interpreted geometrically as follows:
+\begin{itemize}
+  \item For a $2 \times 2$ matrix $A = \begin{bmatrix} \vec{a}_1 & \vec{a}_2\\ \end{bmatrix}$ this is the area of a parallelogram with vertices $\vec{0},\, \vec{a}+1,\, \vec{a}_2$ and $\vec{a}_1 + \vec{a}_2$.
+  \item For a $3 \times 3$ matrix $A = \begin{bmatrix} \vec{a}_1 & \vec{a}_2 & \vec{a}_3\\ \end{bmatrix}$ this is the volume of a parrallelopiped.
+\end{itemize}
+Generalizing this to any $n$ dimensional space we can thus conclude that the determinant in fact represents the $n$-dimensional volume of the generalized parrallelopiped with the origin as vertex and the columns of $A$ as the $n$-vertices adjacent to the origin.
+
+
+\subsection{Volume, area and linear mappings}
+Let $T: \R^n \to \R^n$ be a linear transformation with standard matrix $A$. Suppose $S \subset \R^n$ has $n$-dimensional volume denoted by Vol($S$). Then $T(S)$ has the volume $|\text{det}(A)|\text{Vol}(S)$. What this essentially means is that the $n$-dimensional volume gets scaled by a factor of the determinant of the standard matrix associated with said linear transformation.
+\end{document}
