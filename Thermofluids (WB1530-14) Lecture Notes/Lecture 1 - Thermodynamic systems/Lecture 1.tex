@@ -41,6 +41,8 @@
 
 \begin{document}
 \section{Thermofluids Lecture 1: Thermodynamic systems (20/04/2020)}
+
+
 \subsection{Units used in the course}
 Thermodynamics is the study of heat and energy transfer. There are a number of units which will commonly be found when studying thermodynamics. These are:
 \begin{itemize}
@@ -56,6 +58,7 @@ Some other common important units are:
   \item $1 kWh = 3600 kJ$
   \item $1 kCal = 4.18 kJ$
 \end{itemize}
+
 
 \subsection{Definitions of terms used in the course}
 \begin{itemize}
@@ -103,18 +106,17 @@ The state of a system is defined by a small number of variables called the state
 \begin{itemize}
   \item \underline{intensive, extensive and specific properties:}
 \end{itemize}
-\textbf{Intensive} properties do not change when the system is changed in size (e.g. Temperature and pressure). \textbf{Extensive} properties change proportional to the size of the system (e.g. mass, volume, energy). Extensive properties can be turned into intensive properties if described per unit of mass (or kmol). These are called \textbf{specific} properties. An example of this is specific volume:
-\begin{equation}
-  v = \frac{V}{m},\; \bar{v}=vM
-\end{equation}
+\textbf{Intensive} properties do not change when the system is changed in size (e.g. Temperature and pressure). \textbf{Extensive} properties change proportional to the size of the system (e.g. mass, volume, energy). Extensive properties can be turned into intensive properties if described per unit of mass (or kmol). These are called \textbf{specific} properties. Examples of specific properties are specific volume and specific weight:
+\begin{gather}
+  v = \frac{V}{m},\; \bar{v}=vM\\
+  \gamma_s = \rho g
+\end{gather}
 Where:
 \begin{flalign*}
-  &v = \text{specific volume } [m^3/kg] &&\\
-  &\bar{v} = \text{specific volume } [m^3/kmol]\\
-  &V = \text{Volume } [m^3]\\
-  &m = \text{mass } [kg]\\
-  &M = \text{Molar mass } [kg/kmol] 
-\end{flalign*}\\
+  &v, \bar{v} = \text{Specific volume } [m^3/kg], [m^3/kmol] &&\\
+  &M = \text{Molar mass } [kg/kmol]\\
+  &\gamma_s = \text{Specific weight} [N/m^3]\\
+\end{flalign*}
 
 \begin{itemize}
   \item \underline{Thermodynamic process:}
@@ -125,4 +127,37 @@ A process is defined as a change of state in a system. In classical thermodynami
   \item \underline{Quasi-static process:}
 \end{itemize}
 A process is considered to be quasi-static if it is reversible. These processes are generally very slow (less then the speed of sound).
+
+
+\subsection{Pressure}
+When talking about pressure in thermodynamics we usually refer to fluid or gas pressure. This can be thought of as the normal force exerted by a fluid per unit of area. Pressure measurements can either be absolute or relative to atmospheric pressure. Absolute pressure is measured relative to absolute vacuum (i.e. $p=0 Pa$). Gage pressure of measuring devices however is usually, for the sake of convenience measured relative to the atmospheric pressure. Thus in general:
+\begin{equation}
+  p_{abs} = p_{gage} + p_{atm}
+\end{equation}
+Fluid pressure variates with depth. Why this becomes apparent when considering a free body diagram of a body of fluid. When considering a point lower in the body the weight of the column of water above said point will have a much greater weight, thus increasing pressure. We can assume the density to be constant since liquids are generally incompressible. Because of this the following equation describes the pressure at any depth in a body of fluid:
+\begin{equation}
+  p_{gage} = \rho g \Delta z
+\end{equation}
+When considering very large depths the tremendous amount of pressure can sometimes make it so the approximation of $\rho$ being constant no longer holds. In this case we divide out $\Delta z$ and take the limit of $\Delta z \to 0$ which yields:
+\begin{equation}
+  \frac{dp}{dz} = -\rho g
+\end{equation}
+Which can be written in the form of an integral as:
+\begin{equation}
+  p = -\int_1^2 \rho g\,dz
+\end{equation}
+
+
+\subsection{Measurement of pressure}
+Atmospheric pressure is usually measured with a barometer. It reads the pressure at any given place relative to the standard atmospheric pressure. The mathematics describing barometers is not that interesting and in general fairly trivial.\\
+A different device for measuring pressure is a manometer. It uses a column of fluid, usually bent in a long U shape to compare the pressure at the 2 ends of the device. How much the fluid moves up allows us to compute the pressure of the gas going into the device relative to the atmospheric pressure. The figure below shows a basic manomete. The following equation describes the pressure of the gas:
+\begin{equation}
+  p_1 = p_2 = p_{atm} + \rho gh
+\end{equation}
+
+\begin{figure}[h]
+  \centerline{\includegraphics[width=50mm]{images/manometer.png}}
+  \caption{A basic manometer design}
+\end{figure}
+
 \end{document}
