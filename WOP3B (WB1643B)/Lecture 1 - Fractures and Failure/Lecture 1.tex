@@ -1,0 +1,105 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{0}
+\section{WOP3B Lecture 1: Fractures and Failure}
+
+
+\subsection{Types of fracture}
+There are 2 main types of fracture:
+\begin{itemize}
+  \item Ductile fractures, weaker is shear loads and thus usually fail in the shear plane under a $45^\circ$ angle.
+  \item Brittle fractures, weaker in tensile stresses and thus usually fail in the tensile plane perpendicular to the applied load.
+\end{itemize}
+The thoughness of a material is desribed as:
+\begin{equation}
+  \frac{\text{energy}}{\text{volume}} = \int_0^{\epsilon_f} \sigma\,d\epsilon
+\end{equation}
+Note that this describes the area under the stress strain curve. Because of this, it's easy to see ductile materials can absorb alot more energy then brittle materials. This relation also shows why materials become more susceptible to brittle fracture when work hardening occurs. The total area under the curve decreases as a result of work hardening thus decreasing the thoughness.
+
+\subsection{Types of load:}
+\begin{description}
+  \item[Tensile] Fails in the tensile plane (brittle materials) or the shear plane (ductile materials)
+  \item[Compression] Always fails in the shear plane regardless of material
+  \item[Bending] Fails as a combination of both tensile and shear loads depending on how the load is applied
+  \item[Torsion] Comparable to tensile loads. If the material is weaker in tensile loads (brittle material) it will fail in the tensile plane. If it's weaker under shear loads (ductile materials) it will fail in the shear plane. Note that the tensile plane has a $45^\circ$ angle under torsion, NOT the shear plane.
+\end{description}
+
+
+\subsection{Stress concentrations}
+Sudden changes in the geometry of a material will cause a stress concentration. The local increase in stress is described with the stress concentration factor, which is described by:
+\begin{equation}
+  K_t = \frac{\sigma_{max}}{\sigma}
+\end{equation}
+High local stresses can result in the forming of small cracks. These small cracks are also sudden changes in geometry and thus also cause increased local stress. This can lead to the cracks growing and eventually failure over time.
+
+
+\subsection{Fatigue Fractures}
+Fatigue fractures form in 3 steps:
+\begin{description}
+  \item[Stage 1] Localized cyclic plastic yielding causes microcracks due to shearing across grain boundaries.
+  \item[Stage 2] Formed cracks grow along the tensile plane
+  \item[Stage 3] Final fracture which usually happens suddenly and which is normally a brittle fracture in the tensile plane  
+\end{description}
+Fractures that happen as a result of crack propegations sometimes show \underline{stirations} and \underline{beach marks}. A cut out of the surface when these 2 occur is show below. Beach marks are usually visible to the naked eye while a magnifying glass is needed to see stirations.
+\begin{figure}[h]
+  \centerline{\includegraphics[width=50mm]{images/stirations.png}}
+  \caption{Schematic drawing of the surface with stirations and beach marks.}
+\end{figure}
+In ductile materials cracks start to form due to shear stresses. Crack growth is a result of tensile stresses. Final fracture can either be brittle or ductile. When severe stress concentrations happen sometimes \underline{rachet marks} happen as a result of fatigue.
+\begin{figure}[h]
+  \centerline{\includegraphics[width=50mm]{images/ratchet_marks.png}}
+  \caption{Schematic drawing of rachet marks on an axle due to stress concentrations and fatigue.}
+\end{figure}
+
+
+\subsection{Crack initiation by cutting}
+Cutting brittle materials is done with positive rake tooling. This will give a smooth surface finish, however it will also cause micro cracks on the surface. These micro cracks can lead to stress concentrations and eventually fatigue failure. To prevent this work can either be cut before hardening or surface treated after cutting.
+
+
+\subsection{Thermal cracking}
+Soemtimes cracks form as a result of a temperature gradient. These often happen in welds, cast iron work and after quenching. This happens because the outside of the work coolsdown faster then the inside of the work. Cracks can form in the inside due to thermal expansion. It's also possible for cracks to form at the outside of the work in case of a negative thermal expansion coefficient. This may happen when a metal transitions between phases.
+
+
+\subsection{Corrosion and other types of degradation}
+Corrosion is a type of chemical degredation that turns refined metals into more chemically stable forms such as oxides, hydroxides or sulfides. The corrosion slowly eats away at the metal reducing the diameter and increasing the overall stress by extension. Stress corrosion cracking (SCC) refers to cracking under the combined influence of tensile stress and corrosion. The main cause of corrosion changes depending on the material. Examples are steel in chloride/salt water and natural rubbers in Ozone. Pitting corrosion can also sometimes occur. This is a large amount of localized corrosion creating a crevice or cavity on the material. This type of corrosion is common on materials that usually have an oxide film protecting the surface. Examples of this are stainless steels and aluminium alloys. When the protecting oxide film is chemically or mechanically damaged pitting corrosion occurs. Given enough time this type of corrosion can cause leakage on pipes.
+A different type of degradation is hydrogen embrittlement (HE). When high loads are applied hydrogen atoms migrate towards points with high stress concentration which causes the material to fracture. This fracture can sometimes happen hours after the load is applied. This type of fracture is usually ductile. HE can be fixed by baking out the entrapped hydrogen at $180-220\,^\circ C$ for 2 hours.
+\end{document}
