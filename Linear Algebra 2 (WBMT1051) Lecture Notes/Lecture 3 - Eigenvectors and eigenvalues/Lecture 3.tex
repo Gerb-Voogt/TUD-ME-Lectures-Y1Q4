@@ -1,0 +1,137 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{2}
+\setcounter{equation}{0}
+
+
+\section{Linear Algebra 2 Lecture 3: Eigenvectors and eigenvalues (28/04/2020)}
+\subsection{Eigenvectors and eigenvalues}
+An eigenvector of an $n \times n$ matrix $A$ is a nonzero vector $\vec{x}$ such that $A\vec{x} = \lambda \vec{x}$ for some scalar $\lambda$. For these special cases $\lambda$ is callen an eigenvalue of $A$. If there is a nontrivial solution $\vec{x}$ for $A\vec{x} = \lambda \vec{x}$ then such an $\vec{x}$ is called an eigenvector corresponding to $\lambda$.\\
+Checking if a given vector is an eigenvector and what it's corresponding eigenvalue is , is a very easy process. Take the matrix-vector product $A\vec{x} = \vec{y}$. If there is a value $\lambda$ for which $\vec{y} = \lambda \vec{x}$ then $\vec{x}$ is an eigenvector and $\lambda$ is a corresponding eigenvalue. Note that because of this relation eigenvectors are never unique. If there is 1, there are infinitly many. Finding an eigenvector for a given eigenvalue is a bit more tricky but nonetheless fairly easy.
+\begin{gather}
+  A\vec{x} = \lambda \vec{x} \notag \\
+  A\vec{x} - \lambda \vec{x} = \vec{0} \notag \\
+  (A-\lambda I)\vec{x} = 0
+\end{gather}
+if (1) has a nontrivial solution for $\lambda$ then $\lambda$ is an eigenvalue. Also note that an invertible matrix cannot have 0 as an eigenvalue. Proof for this statemnent:\\
+\\
+Assume $A$ is an invertible matrix with the nonzero eigenvector $\vec{v}$ corresponding to the eigenvalue $0$. Then:
+\begin{gather*}
+  \vec{v} = A^{-1}A\vec{v} = A^{-1}\lambda \vec{v} = A^{-1}(0\vec{v}) = 0
+\end{gather*}
+But $\vec{v}$ should be nonzero. Thus if $0$ is an eigenvalue of $A$, then $A$ cannot be invertible. \qed
+
+
+\subsection{Properties of eigenvectors and eigenvalues}
+Some properties of note for eigenvalues are as follows:
+\begin{gather*}
+  A\vec{x} = \lambda \vec{x}\\
+  A^2\vec{x} = A \lambda \vec{x} = \lambda A\vec{x} = \lambda^2 \vec{x}\\
+  \vdots\\
+  A^n\vec{x} = \lambda^n \vec{x}
+\end{gather*}
+\begin{gather*}
+  A\vec{x} = \lambda \vec{x}\\
+  A^{-1} A \vec{x} = \vec{x} = A^{-1} \lambda \vec{x}\\
+  \text{if $\lambda \neq 0$: } A^{-1} \vec{x} = \lambda^{-1} \vec{x}
+\end{gather*}
+We know for a fact that $\lambda$ cannot be $0$ since we have proven that an invertible matrix does not have $0$ as an eigenvalue. From this we can make the following list of statements which are all equivalent:
+\begin{align*}
+  \lambda \text{ is an eigenvalue of } A &\Leftrightarrow A\vec{x} = \lambda \vec{x} \text{ for some } \vec{x}\neq 0\\
+                                         &\Leftrightarrow (A-\lambda I)\vec{x}=\vec{0} \text{ for some } \vec{x}\neq 0\\
+                                         &\Leftrightarrow A-\lambda I \text{ is not invertible}\\
+                                         &\Leftrightarrow |A -\lambda I| = 0
+\end{align*}
+Because of this relation the eigenvalues of a diagonal matrix correspond to it's main entries:
+\begin{gather*}
+  A = 
+  \begin{bmatrix}
+    a_{11} & a_{12} & a_{13}\\
+    0      & a_{22} & a_{23}\\
+    0      & 0      & a_{33}\\
+  \end{bmatrix}
+  \, , \quad
+  \lambda I =
+  \begin{bmatrix}
+    \lambda& 0      & 0\\
+    0      & \lambda& 0\\
+    0      & 0      & \lambda\\
+  \end{bmatrix}\\
+  |A-\lambda I| =
+  \begin{vmatrix}
+    a_{11} - \lambda & a_{12}           & a_{13}\\
+    0                & a_{22} - \lambda & a_{23}\\
+    0                & 0                & a_{33} - \lambda\\
+  \end{vmatrix}
+  = (a_{11} -\lambda)(a_{22} - \lambda)(a_{33} - \lambda)\\
+  \text{Which is $0$ iff: } \lambda = a_{11} \vee \lambda = a_{22} \vee \lambda = a_{33}\qed
+\end{gather*}
+Note that an $n \times n$ matrix will at most give an $n$th power polynomial. The fundamental theorem of algebra states that an $n$th power polynomial will have at most $n$ roots. A direct consequence of this is that an $n \times n$ matrix will have at most $n$ eigenvalues. Another property of eigenvalues is as follows: Eigenvectors corresponding to a distinct eigenvalue are always linearly independent, since these live in a different eigenspace by definition.
+
+
+\subsection{Eigenspaces}
+Definition of an eigenspace:\\
+Let $A$ be an $n \times n$ matrix and $\lambda$ a scalar. The eigenspace $E_\lambda$ of $A$ corresponding to $\lambda$ consist of:
+\begin{itemize}
+  \item All eigenvectors with the eigenvalue $\lambda$
+  \item The zero vector
+\end{itemize}
+In other words, $E_\lambda$ is the null space of the matrix $A-\lambda I$ and by extension the set of all solutions to the equation $A\vec{x} = \lambda \vec{x}$. Thus $E_\lambda \in \R^n$ and $E_\lambda = \text{Nul}(A-\lambda I)$.
+
+
+\subsection{Characteristic equations}
+$|A-\lambda I| = 0$ is called the characteristic equation of $A$. A scalar $\lambda$ is an eigenvalue if and only if it statisfies the characteristic equation. $|A-\lambda I|$ is called the characteristic polynomial. These characteristic polynomials are important for algebraic multiplicity. The algebraic multiplicity of an eigenvalue $\lambda$ is its multiplicity as a root of the characteristic equation. Thus if an $n \times n$ matrix has $n$ eigenvalues all these eigenvalues have a multiplicity of $1$. An example of multiplicity will follow to help illustrate the concept:\\
+The characteristic polynomial of a $6 \times 6$ matrix is $\lambda^6 - 4\lambda^5 - 12\lambda^4$. Find the eigenvalues of this matrix and their multiplicities.
+\begin{align*}
+  \lambda^6 - 4\lambda^5 - 12\lambda^4 &= \lambda^4(\lambda^2 - 4\lambda - 12)\\
+                                       &= \lambda^4(\lambda - 6)(\lambda + 2)\\
+\end{align*}
+Which implies:
+\begin{gather*}
+  \lambda^4 = 0 \vee \lambda-6 = 0 \vee \lambda+2=0\\
+  \lambda = 0, \text{ multiplicity}=4\\
+  \lambda = 6, \text{ multiplicity}=1\\
+  \lambda = -2, \text{ multiplicity}=1
+\end{gather*}
+The sum of the multiplicities of an $n$th root polynomial will always add up to $n$.
+
+\end{document}
