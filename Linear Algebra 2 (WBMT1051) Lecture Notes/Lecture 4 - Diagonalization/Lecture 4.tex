@@ -1,0 +1,147 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+\newcommand*{\am}{\ensuremath{\text{a.m.}}}
+\newcommand*{\gm}{\ensuremath{\text{g.m.}}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{3}
+\setcounter{equation}{0}
+\section{Linear Algebra 2 Lecture 4: Diagonalization (01/05/2020)}
+
+
+\subsection{Similarity}
+If $A$ and $B$ are $n \times n$ matrices, then $A$ is similar to be of there excists an $n \times n$ invertible matrix $P$ such that $A=PBP^{-1}$. When 2 matrices are similar they have the same characteristic polynomial. By extension this also implies that $A$ and $B$ have the same eigenvalues with the same algebraic multiplicities. Note that this does \underline{not} imply that 2 matrices with the same eigenvalues are always similar. Consider the following 2 matrices:
+\begin{gather*}
+  \begin{bmatrix}
+    2 & 1\\
+    0 & 2\\
+  \end{bmatrix}
+  \quad \text{and} \quad
+  \begin{bmatrix}
+    2 & 0\\
+    0 & 2\\
+  \end{bmatrix}
+\end{gather*}
+These matrices both have the same eigenvalue of 2 with the same algebraic multiplicities. However these matrices are not in fact similar since the equality $A=PBP^{-1}$ does not hold for these 2 matrices.\\
+The equality $A=PBP^{-1}$ also implies the following: if $\vec{v}$ is an eigenvector of $B$ with the eigenvalue $\lambda$, then $P\vec{v}$ is an eigenvector of $A$ with the same eigenvalue $\lambda$.
+
+
+\subsection{Diagonalization}
+An $n \times n$ matrix is diagonal if all of it's elements except for the main entries are $0$:
+\begin{equation}
+  \begin{bmatrix}
+    d_{11} & 0      & \cdots & 0\\
+    0      & d_{22} & \cdots & 0\\
+    \vdots & \vdots & \ddots & \vdots\\
+    0      & 0      & \cdots & d_{nn}\\
+  \end{bmatrix}
+\end{equation}
+There are several reasons as to why we are interested in diagonal matrices. The first convenient property is a result of matrix multiplication. A diagonal matrix $D$ to any power $k$ will always be equal to all of it's main entries to the power $k$ (this can be proven with matrix multiplication but I can't be asked to type it out...):
+\begin{equation}
+  D^k = 
+  \begin{bmatrix}
+    d_{11}^k & 0       & \cdots & 0\\
+    0       & d_{22}^k & \cdots & 0\\
+    \vdots  & \vdots   & \ddots & \vdots\\
+    0       & 0        & \cdots & d_{nn}^k\\
+  \end{bmatrix}
+\end{equation}
+Furthermore all of the main entries on a diagonal matrix are it's own eigenvalues\footnote{Can be proven with either the formula for the $2 \times 2$ matrix, the triple-scalar product for a $3 \times 3$ matrix or with cofactor expansion for the most general case}:
+\begin{equation}
+  D =
+  \begin{bmatrix}
+    \lambda_1 & 0         & \cdots & 0\\
+    0         & \lambda_2 & \cdots & 0\\
+    \vdots    & \vdots    & \ddots & \vdots\\
+    0         & 0         & \cdots & \lambda_n\\
+  \end{bmatrix}
+\end{equation}
+\\
+A matrix $A$ is diagonalizable if $A$ is similar to a diagonal matrix $D$. This implies that $A$ is diagonalizable if it can be expressed as $A=PDP^{-1}$, where $D$ is a diagonalizable matrix and $P$ and invertible matrix. It can be proven that (but I'm not going to) $A=PDP^{-1}$ only holds if:
+\begin{equation}
+  D =
+  \begin{bmatrix}
+    \lambda_{A,1} & 0             & \cdots & 0\\
+    0             & \lambda_{A,2} & \cdots & 0\\
+    \vdots        & \vdots        & \ddots & \vdots\\
+    0             & 0             & \cdots & \lambda_{A,n}\\
+  \end{bmatrix}
+\end{equation}
+Where $\lambda_{A,1}, \cdots, \lambda_{A,n}$ are the eigenvalues of $A$ and:
+\begin{equation}
+  P = 
+  \begin{bmatrix}
+  \vec{v}_1 & \vec{v}_2 & \cdots & \vec{v}_n\\  
+  \end{bmatrix}
+\end{equation}
+Where the set $\{\vec{v}_1, \vec{v}_2, \cdots, \vec{v}_n \}$ is a linearly independent set of eigenvectors corresponding to the eigenvalues of $A$. Diagonalizing $A$ makes it easy to compute higher powers of the matrix-product since:
+\begin{gather*}
+  A^2 = (PDP^{-1})(PDP^{-1}) = PD^2P^{-1}\\
+  A^3 = (PDP^{-1})(PD^2P^{-1}) = PD^3P^{-1}\\
+  \vdots\\
+  A^k = (PDP^-1)(PD^{k-1}P^{-1}) = PD^kP^{-1}
+\end{gather*}
+Since the matrix $P$ has to be constructed from a set of linearly independent eigenvectors of $A$ we know that $A$ is diagonalizable iff it has $n$ linearly independent eigenvectors, and thus $n$ distinct eigenvalues all with a algebraic multiplicitie of 1. This set of of $n$ linearly independent eigenvectors form what is called an eigenbasis of $A$.
+
+
+\subsection{Algebraic and geometric multiplicity}
+Let $\lambda_0$ be an eigenvalue corresponding to the matrix $A$. Then: The algebraic multiplicity, denoted as $\am(\lambda_0)$, is the number of factors $(\lambda - \lambda_0)$ in the characteristic polynomial of $A$. The geomtric multiplicity of $\lambda_0$, denoted as $\gm(\lambda_0)$, is the dimension of the subspace $E_{\lambda_0}$, or in terms of an equality: $\gm(\lambda_0) = \text{dim}(\lambda_0)$. Note that the following inequality always holds:
+\begin{equation}
+  1 \leq \gm(\lambda_0) \leq \am(\lambda_0)
+\end{equation}
+
+
+\subsection{Second diagonalization theorem}
+Let $A$ be an $n \times n$ matrix with the eigenvalues $\lambda_1, \cdots, \lambda_p$. Then $A$ is diagonalizable iff for each eigenvalue $\lambda_i$ the following equality holds:
+\begin{equation}
+  \am(\lambda_i) = \gm(\lambda_i)
+\end{equation}
+
+
+\subsection{Algorithm for diagonalizing a matrix}
+\begin{enumerate}
+  \item Find the eigenvalues $\lambda_0, \lambda_1, \cdots, \lambda_n$ of $A$
+  \item Find $n$ linearly independent eigenvectors corresponding to the eigenvalues of $A$. If these cannot be found the algortihm ends here.
+  \item Construct $P$ with the eigenvectors found in step 2.
+  \item Construct $D$ from the eigenvalues found in step 1.
+\end{enumerate}
+
+\end{document}
