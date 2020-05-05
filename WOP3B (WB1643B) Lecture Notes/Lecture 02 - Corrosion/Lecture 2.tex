@@ -1,0 +1,123 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mhchem}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{1}
+\setcounter{equation}{0}
+\section{WOP3B Lecture 2: Corrosion (30/04/2020)}
+
+
+\subsection{Introduction to corrosion}
+Corrossion is the chemical degradation that turns pure metals into more chemically stable compounds such as oxides, hydroxides and sulfides. Examples of this are the rusting of iron turning turning \ce{Fe} atoms into \ce{Fe2O3} and aluminum reacting with oxygen into aluminum oxide (\ce{Al2O3}). These compounds are more chemically stable then the pure metals themselves since they are less likely to react. By extension this means that compounds like \ce{Al2O3} inherently have less energy then pure aluminum. Thus extracting aluminum from bauxite requires a large amount of energy since \ce{Al2O3} has less energy then \ce{Al + O2}. The most notable exception to this general rule are noble metals which as pure metals have less energy then compounds making them more chemically stable.
+
+
+\subsection{Electrochemistry of corrosion}
+Corrosion often time happens in an enviroment with alkalis or acids and is an electro-chemical reaction. This means there will be an exchange of electrons during the reaction. Becuase of this a chemical compound that dissociates in water increases either the hydrogen-ion (\ce{H^+}) or hydroxide-ion (\ce{OH^-}) concentration. Since the pH value of a solution is defined as:
+\begin{equation}
+  \text{pH} = -\log_{10}(\left[ \ce{H^+} \right])
+\end{equation}
+Because of this relation the pH level of an enviroment can initiate corrosion by stimulating a reaction in which a metal dissociates into a metal-ion and free electrons. An example of this process is zinc disolving in an acidic solution:
+\begin{center}
+  \ce{Zn -> Zn^{2+} + 2e^-} (Anodic reaction)\\
+  \ce{2H^+ + 2e^- -> H2} (Cathodic reaction)
+\end{center}
+Recall that the anodic reaction is the oxidation reaction and that the cathodic reaction is the reduction reaction.\\
+When a metal is placed in a conducting substance such as salt water it dissociates into ions and releases electrons. An example of this happening is iron in salt water for which the following reaction occurs:
+\begin{center}
+  \ce{Fe <-> Fe^{2+} + 2e^-}
+\end{center}
+This causes the iron to build up negative charge untill electrostatic forces pull the metal ions back onto the surface of the iron.
+
+
+\subsection{Reduction potentials}
+Each metal has a characteristic potentials called the standard reduction potential. This is a way of measuring how likely a metal is to undergo a cathodic reaction. Thus metals which are very likely to oxidize have a very low reduction potential such as \ce{Na} and \ce{Mg}. A galvanic series is a charge which shows properties similar to reduction potentials but applied to engineering materials. Noble materials are most likely to undergo cathodic reaction while less noble materials usually undergo anodic reactions. When two materials are connected in a galvanic cell a potential difference appears between them. The reduction potential dictates which material is the anode and which is the cathode. The most noble of the two metals in a galvanic series will be the cathode.
+
+
+\subsection{Batteries}
+An interesting application of Electrochemistry is batteries. The potential difference between two metals can be used for creating a battery\footnote{sometimes referred to as a galvanic cell}. An example is a copper and zinc cell which is described by the following 2 half reactions:
+\begin{center}
+  \ce{Zn(s) -> Zn^{2+}(aq) + 2e^-}\\
+  \ce{Cu^{2+}(aq) + 2e^- -> Cu(s)}
+\end{center}
+Which gives the following overall reaction:
+\begin{center}
+  \ce{Zn(s) + Cu^{2+}(aq) -> Zn^{2+}(aq) + Cu (s)}
+\end{center}
+When the enviroment is changed from copper-sulfate to water there are no excess copper-ions to react with once a current is established. The iron will still corrode though. The cathodic reaction is now the hydrolysis reaction:
+\begin{center}
+  \ce{H2O + O2 + 2e^- -> 2OH^-}
+\end{center}
+
+
+\subsection{Kinetics of corrosion reactions}
+For electro-chemical reaction there is a direct relation between mass and current generated. Which is to say the following:
+\begin{center}
+  Amount of metal oxidized $\propto$ Current generated
+\end{center}
+This process is desribed by Faraday's law of electrolysis:
+\begin{equation}
+  m = \frac{ItM}{zF}
+\end{equation}
+Where $M$ is the molar mass $F$ Faraday's constant and $z$ the valency number of the ions. Expressing this in terms of reaction speed $r$ gives the following equation:
+\begin{equation}
+  r =\frac{Mi}{zFD}
+\end{equation}
+
+
+\subsection{Types of corrosion}
+\begin{itemize}
+  \item \underline{uniform}, Corrosion is homogeneous over the entire surface. Usually happens to steel and is considered to be the least dangerous.
+  \item \underline{Cracking}, Cracks sometimes result from corrosion (recall hydrogen embrittlement from last lecture). Usually causes the material to fail in a brittle type fraction.
+  \item \underline{Fatigue}, Cyclical loads can cause corrosion solvents to enter cracks in the material causing local corrosion
+  \item \underline{Erosion}, Can stop protective layers like \ce{Al2O3} from forming on the surface of a metal causing the material to be in contact with a corrosive substance. Erosion usually happens as a result of a constant stream of liquid which also directly supplies corrosive substances to the eroded spots.
+  \item \underline{Microbial}, Probably one of the most metal forms of corrosion. Some bacteria eat metal for free electrons corroding the metal in the process. Usually cause localized corrosion such as pitting. Sulphate Reducing Bacteria (SRB) are considered to be the most destructive.
+  \item \underline{Galvanic}, Accelerated corrosion due to contact between a more noble metal or non-metallic conductor in a corrosive enviroment. Compatability between metals may be predicted using the anodic index of the 2 materials. Anodic index is a measure of electrochemical voltage that will form between the metal and gold. The relative index between 2 metals is found by subtracting their indeces. In controlled enviroments $0.50\,V$ is acceptable, normally no more then $0.25\,V$ is allowed and in harsh conditions no more then $0.15\, V$ is allowed.
+  \item \underline{Pitting}, Highly localized corrosion causing deep penetration into the metal. Usually happens as a result of damage to a protective layer.
+  \item \underline{Intergranular}, Corrosion along grain boundaries not attacking the grains themselves.
+  \item \underline{crevice}, Corrosion occuring in convined spaces. Usually a result of flanges, bad bolt allignment or bad design.
+  \item \underline{Filiform}, Threadlike corrosion resulting from organic coating (paint) defect.
+\end{itemize}
+
+
+\subsection{Protection against corrosion}
+TODO
+
+\end{document}
