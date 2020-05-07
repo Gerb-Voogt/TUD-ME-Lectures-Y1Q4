@@ -1,0 +1,82 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{equation}{0}
+\setcounter{section}{2}
+\section{WOP3B Lecture 3: Welding (04/05/2020)}
+
+
+\subsection{Introduction to welding, brazing and soldering}
+Welding usually refers to the joining material through local melting of the material by using heat. The locally melted parts are allowed to flow together, usually with added filler material, and cool down causing fusion of the materials. The 3 main types of welding are:
+\begin{itemize}
+  \item Arcwelding, using plasma made with high electric current and gas
+  \item Gas welding, using a gas as fuel supplying heat (usually oxyfuels)
+  \item Resistance welding, using the resistance of the material and high electric currents
+\end{itemize}
+Brazing is a process comparable to welding. The main difference between welding and brazing is that welding melts the base metal that's being welded while brazing doesn't. Brazing is alot like soldering but at higher temperatures. Using different filler metals such as silver alloys, copper alloys or aluminum alloys. Soldering generally only uses tin alloys or lead alloys as filler material depending on the goal.
+
+
+\subsection{Weld quality and material properties}
+Welding adds a high amount of localized heat. Heat generally changes material properties, thus it's only natural to conclude that welding may have large implications for the local material properties. The quality of the weld itself is also highly dependend on the process. Examples of process paramaters which influence weld quality are heat transferred during welding, heat transport through convection (during and after welding), solidification properties of the material and weldpuddle interactions such as difference in density or interaction with electro-magnetic forces.\\
+Welding affects the properties of the surrounding material because of the large amount of heat. The mechanical properties of a material are determined by the microstructure of the material, which changes due to heat. This local change in microstructure can affect properties such as local tensile strength, local ductility of the material, local toughness and crack sensetivity. This means mechanical properties in and around a weld are different from the base metal which wass welded. This has some important implications when considering part design. On top of this welding can cause local deformations and residue stresses due to the center of the weld cooling slower then the surrounding area.
+
+
+\subsection{The Heat Affected Zone (HAZ)}
+Concentrated amounts of local heat will dissapate through the material causign material around the weld to heat up as well. This zone is referred to as the heat affected zone. This zone is defined by the perimeter around the weld where changes to the microstructure happen. As discussed previously these local changes in microstructure also cause local chnages in material properties. For steel the heat affected zone has 3 main parts. The weld itself where grains tend to be very long and large and grow in the direction of the maximum temperature gradient (almost always towards the weld direction). Just outside the weld is a perimeter with very coarse grains which tend to grow towards the weld metal. Outside that area is an area with fine grains which is the outer most part of the HAZ.
+
+
+\subsection{The math describing heat development over time}
+The full description of heat transfer during welding is given by the following equation. This equations is an energy sum describing the amount of energy going in and out of the weld:
+\begin{equation}
+  \rho C_p \frac{\partial T}{\partial t} = \kappa \nabla^2 T - \rho C_p (\vec{v}\cdot \nabla)T - U + \vec{j} \cdot \vec{E} + \phi
+\end{equation}
+Where $\kappa \nabla^2 T$ is heat conduction through the material, $\rho C_p (\vec{v} \cdot \nabla)T$ is the loss of heat through convection, $U$ is the loss of heat through radiation, $\vec{j}\cdot \vec{E}$ is the electrical energy added to the weld and $\phi$ is the dissapation of heat. For this partial differential equation (PDE) to be analytically solvable a ton of simplification need to be made. When $\alpha = \frac{\kappa}{\rho C_p}$ then we are left with the solvable PDE, the heat equation:
+\begin{equation}
+  \frac{\partial T}{\partial t} = \alpha \nabla^2 T
+\end{equation}
+This equations tells us that the change of heat over time is dependend on some constant $\alpha$ which depends on material and the spatial second derrivatives (laplacian) of the temperature. The laplaciaan can be thought of as the divergence of the gradient, but the most important fact for now is that the cahnge of heat over time depends on the temperature gradient.\\
+Applying the heat equation to a weld, as mentioned before, simplifies the problem to the point of meaninglessness since it doesn't \underline{really} tell us anything about the weld anymore at that point. Instead generally numerical methods such as finite element analysis are applied to systems like this since they are much more accurate.
+
+
+\subsection{Weld Defects}
+TODO
+
+\end{document}
