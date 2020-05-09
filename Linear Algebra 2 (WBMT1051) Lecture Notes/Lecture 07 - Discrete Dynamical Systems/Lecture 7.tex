@@ -1,0 +1,88 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{equation}{0}
+\setcounter{section}{6}
+\section{Linear Algebra 2 Lecture 7: Discrete Dynamical Systems (15/04/2020)}
+
+
+\subsection{Definition of a discrete dynamical system (DDS)}
+A (linear) discrete dynamical system on $\R^n$ is a squence of vectors $\vec{x}_1, \vec{x}_2, \cdots \in \R^n$ such that $\vec{x}_{k+1}=A\vec{x}_k$ for all $k \geq 0$ and fixed $n \times n$ matrix $A$. The vectors $\vec{x}_k$ are referred to as the state vectors of the system at the discrete time instants $k=0,1,2,\cdots$. The vector $\vec{x}_0$ is called the initial state vector.
+
+
+\subsection{General solutions if $A$ is diagonalizable}
+Let $A$ be an $n \times n$ diagonalizable matrix with the real eigenvalues $\lambda_1, \cdots, \lambda_n$ and the corresponding eigenvectors $\vec{v}_1,\cdots,\vec{v}_n$. Then the discrete dynamical system defined by $\vec{x}_{k+1} = A\vec{x}_k$ has the following general solution:
+\begin{equation}
+  \vec{x}_k = c_1 \lambda_1^k \vec{v}_1 + \cdots + c_n \lambda_n^k \vec{v}_n = \sum_{i=1}^{n} c_i \lambda_i^k \vec{v}_i
+\end{equation}
+If the initial state vector $\vec{x}_0$ of the system is given the coefficients $c_j$ can be determined by solving:
+\begin{equation}
+  \vec{x}_0 = c_1 \vec{v}_1 + \cdots + c_n \vec{v}_n = \sum_{i=1}^{n} c_i \vec{v}_i
+\end{equation}
+
+
+\subsection{Graphical description of real solutions}
+$\vec{x}_{k+1} = A \vec{x}_k$ can geometrically be interpreted as what happens to the $\vec{x}_0$ after repeadetly applying the linear transformation $\vec{x} \mapsto A\vec{x}$. The graph of the vectors $\vec{x}_0, \vec{x}_1, \cdots$ is called the trajectory of the DDS. There are several different trajectories which can be observed depending on whether the origin is an attractor, repeller or saddle point.
+\begin{enumerate}[label=\alph*]
+  \item Attractor, This happens when $\lambda_j < 1$ for all $j$. All initial state vectors tend towards $0$.
+  \item Repeller, this happens when $\lambda_j > 1$ for all $j$. All initial state vectors tend away from $0$.
+  \item Saddle point, this happens when $\lambda_j < 1$ for some $j$ and $\lambda_k > 1$ for some $k$. Whether the initial state vector tends away from or towards the origin varies on a case by case basis.
+\end{enumerate}
+
+
+\subsection{graphical description of complex solutions}
+There are 2 notable cases for DDS with complex eigenvalues. The case where the transformation applied is some scale-rotation matrix $C$:
+\begin{equation}
+  \vec{x}_{k+1} = C\vec{x}_k
+\end{equation}
+Or the more general case where with some matrix $A$ which is similar to a scale-rotation matrix $C$, which gives:
+\begin{equation}
+  \vec{x}_{k+1} = A \vec{x} \quad \text{where} \quad A=PCP^{-1}
+\end{equation}
+Given a $2 \times 2$ matrix with the complex eigenvalues $\lambda = r(\cos(\phi) \pm i\sin(\phi))$, the trajectory of the points $\vec{x}_0, \vec{x}_1, \vec{x}_2, \cdots$ (where $\vec{x}_0 \neq 0$) of the DDS $\vec{x}_{k+1} = A\vec{x}_k$ is:
+\begin{enumerate}[label=\alph*]
+  \item A spiral towards the $0$ if $|\lambda| < 1$
+  \item elliptical around the $0$ if $|\lambda| = 1$
+  \item a spiral away from $0$  if $|\lambda| > 1$
+\end{enumerate}
+
+\end{document}
