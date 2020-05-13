@@ -7,6 +7,7 @@
 \usepackage{subfig}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{mhchem}
 
 \graphicspath{ {./images} }
 \newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
@@ -76,7 +77,50 @@ This equations tells us that the change of heat over time is dependend on some c
 Applying the heat equation to a weld, as mentioned before, simplifies the problem to the point of meaninglessness since it doesn't \underline{really} tell us anything about the weld anymore at that point. Instead generally numerical methods such as finite element analysis are applied to systems like this since they are much more accurate.
 
 
-\subsection{Weld Defects}
-TODO
+\subsection{External welding defects}
+\underline{Underfilling:} When welding sometimes the weld is not completely filled compared to the surrounding material. This usually happens because of welding at high speeds, not using enough power or using too little filler material.
+\newline
+\underline{Overfilling:} Conversly welds can also be overfilled rather then underfilled. When this happens the weld extends above the surrounding material. It usually happens when welding too slow or when using too much filler material.
+\newline
+\underline{Root or toe cracks:} It's possible for small crevices and cracks to form at either the toe of root of a weld. It usually happens when using too much power, using an incorrect electrode angle when welding or when the distance between electro and the workpiece is too large. It might also occur due to surface contamination.
+\newline
+\underline{Undercutting:} Because of thermodynamics a weld solidifies and by extension shrinks in the direction of the largest temperature gradient. This can cause the forming of an undercut at the root of the weld. This can be prevented by adding less heat when doing a second pass over the weld.
+\newline
+\underline{Linear missalignment:} Welds can cause parts to misalign due to either thermal shrinking or bad craftsmanship. Advoid this by taking good care of the weld, using proper clamping when welding and look for a better welder when it does happen.
+\newline
+\underline{Cold lapping:} Sometimes a weld is in contact with but not fused to the mother material. This is referred to as cold lapping. It's usually caused by bad welding technique or bad choice of mother material. Not all metals are weldable (7075 \ce{Al} is not for example.)
+
+
+\subsection{Internal welding defects}
+\underline{porosity:} When welding small pores may be created inside of the weld. It's usually a result of gas forming in the weld. This may happen due to the surface being contaminated for example. Shrinking or using too little protective gas may also be causes for porosity.
+\newline
+\underline{Slag inclusion:} Slag can get stuck inside of a weld during the welding process.
+\newline
+\underline{Lack of fusion:} The weld metal may not completely fuse with the mother metal. Can have many different causes, such as high weld speed, bad weld design, insufficient pre-heating, etc.
+\newline
+
+
+\subsection{Forming of cracks}
+\underline{Cracking during solidification:} Usually happens at the center of the weld. Outside of the weld in contact the mother metal cools down and by extension solidifies quicker then the center of the weld. This can create a crevice or brittle fracture at the center of the weld. Welds with a high depth:width ratio are especially susceptible to this.
+\newline
+\underline{Liquation cracking:} Cracking due to local difference in morphology. Example is \ce{Mn} not being homogeneously distributed through a piece of steel, but rather having a high local concentration in 1 or a few grains. This high local concentration of \ce{Mn} can cause the material locally melt at a lower temperature. Alloys with large solidification trajectory also have a higher tendency to undergo liquation cracking.
+\newline
+\underline{Hydrogen embrittlement:} Has been discussed before in the lecture on fractures. Caused by hydrogen being present in the weld. Causes a sudden cold, brittle fracture.
+
+
+\subsection{Inspection of welds}
+Short summation of common weld inspection methods:
+\begin{itemize}
+  \item Visual, looking at the weld for defects with your eyes
+  \item Penetrant, visualizing cracks and possible pores with a high contrast fluid and UV-light
+  \item Magnetic, visualizing cracks by getting coloured magnetic particles caught in the crack
+  \item Radiographic, x-raying a weld
+  \item Ultrasonic, Using echo location on a weld
+\end{itemize}
+
+
+\subsection{Micro and nano defects}
+No weld is completely without defects. Micro defects and nano defects such as very small pores and cracks may (and will) occur. These micro cracks may grow into macro cracks under an applied load.
+
 
 \end{document}
