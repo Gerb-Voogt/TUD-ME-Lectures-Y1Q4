@@ -26,7 +26,6 @@
 \makeatother
 
 \newtheorem{theorem}{Theorem}
-
 %------------------------------------------------
 %Templates for images and figures
 % \begin{figure}[h]
@@ -61,7 +60,124 @@
 %-----------------------------------------------
 
 \begin{document}
+\setcounter{section}{8}
+\setcounter{equation}{0}
+\section{Thermofluids Lecture 9: The second Law of Thermodynamics (Part 1)}
 
 
+\subsection{Introduction to the second law}
+The second law of Thermodynamics tells us something about the direction of thermodynamics processes. Nature usually has a direction in which processes tend to happen spontaneously. For example: dropping a book from a height will turn pontential energy into kinetic energy. When the book hits the ground kinetic energy will turn into sound and heat on impact. However, simply boiling the book and yelling at it for a bit will \underline{not} make it fall back up. In other words it's a one way trip. Whenever processes do happen spontaneously there is an imbalance between begin- and end-state of the system. There is a non-equilibrium. Furthermore the second law limits the amount of work that can be obtained from any random power cycle. The second law of thermodynamics is formally given as: \newline
+\textit{the total entropy of an isolated system can never decrease over time, and is constant if and only if all processes are reversible. Isolated systems spontaneously evolve towards thermodynamic equilibrium, the state with maximum entropy.}
+
+
+\subsection{Reversibility of processes}
+A system which can be considered reversible is any systems which statisfies all of the following properties:
+\begin{itemize}
+  \item The system and it's surroundings can at all times return to their original state
+  \item If the process is reversed, then it's forward path and backward path will be indentical
+\end{itemize}
+Some interesting things of note are the following: Perfectly reversible systems can \underline{never} be reached in practice. The surroundings will always be altered in some way. Furthermore a perfectly reversible system cannot deviate from thermal equilibrium. This would make it infinitly slow. These properties also imply that an irreversible process can never spontaneously return to it's initial state.\\
+\\
+There may be several reasons as to why a process may not be reversible. Some examples are:
+\begin{itemize}
+  \item All forms of friction
+  \item Non-utilized heat transfer through difference in temperature
+  \item Non-utilized expansion of fluid to a lower pressure
+  \item Mixing of substances
+  \item Electrical current flowing through a resistance
+\end{itemize}
+Irreversibilities are the parts of a process which reduce work that would theoretically be obtained if the process were reversible. Effectifly they are a loss in potential work that the system could do. Sometimes referred to as "lost" work.
+
+
+\subsection{Internally reversible processes and thermal efficiency}
+For all states of an interanlly reversible process that a closed system undergoes, all intensive state properties remain uniform in each of the phases present. This implies that the intensive properties do not change in space. A difference in intensive properties should lead to driving forces, whereas reversibility requires that no spontaneous process can take place.\\
+We can use the idea that intensive properties do not change for these type of systems to describe thermal efficiency of a power cycle:
+\begin{equation}
+  \eta_{th} = \frac{\Delta^{cycle}W}{Q_{in}^H}
+\end{equation}
+We know that for internally reversible processes $\Delta^{cycle}W = Q_{in}^H - Q_{out}^H$. Subsituting this into the previous equation leaves us with:
+\begin{equation}
+  \eta_{th} = 1 - \frac{Q_{out}^H}{Q_{in}^H} < 1
+\end{equation}
+Because $Q_C^{cycle} > 0$ we can know for sure that $\eta_{th} < 0$, which makes alot of sense. A process can never output more work then what was initially put into it. Even a reversible (read idealized) power cycle process has a thermal efficiency lower then $1$, since heat can \underline{never} be fully converted to work.
+
+
+\subsection{Results of the second law}
+The second law has many implications. The first of which is, as discussed before, that $\eta_{th} < 1$ for any process or power cycle. Furthermore all reversible Carnot-like\footnote{Carnot-like means all external heat transfer is realized isothermally with 2 thermal reservoirs.} (more on that later) power cycles operating between the same temperature of 2 thermal reservoirs have the same thermal efficiency $\eta_{rev}$. This implies that $\eta_{th}$ for a Carnot-like power cycle is independent of working fluid and independent of the processes making up the cycle. An irreversible (read real) power cycle has a lower efficiency still, since it accounts for Irreversibilities. Thus we are left with the following inequality:
+\begin{equation}
+  \eta_{real} < \eta_{rev} < 1
+\end{equation}
+
+
+\subsection{The Carnot power cycle process for ideal gas}
+The Carnot cycle generally refers to a $4$ step idealized power cycle. It's a perfectly reversible process. An heat engine using a Carnot-cycle is a "perfect" heat engine. It's usefull for modelling maximum achievable efficiency of power cycles. The steps for a Carnot cycle are:
+\begin{enumerate}
+  \item process $1 \to 2$: Reversible isothermal expansion
+  \item process $2 \to 3$: Reversible adiabatic expansion
+  \item process $3 \to 4$: Reversible isothermal compression
+  \item process $4 \to 1$: Reversible adiabatic compression
+\end{enumerate}
+\begin{figure}[h]
+  \centerline{\includegraphics[width=80mm]{images/placeholder.png}}
+  \caption{The carnot cycle process for which the derrivation will be made}
+  \label{fig:Carnot_cycle}
+\end{figure}
+Consider the Carnot-cycle given in figure \ref{fig:Carnot_cycle}. $T_H$ and $T_C$ are isotherms along which the temperature is constant.\\
+\\ 
+\underline{Process $1 \to 2$:}
+\begin{align}
+  W_{12} = \int_1^2 p\,dV &= \int_1^2 \frac{mRT_C}{V}\,dV\\
+                          &= mRT_C \ln \left( \frac{V_2}{V_1} \right)
+\end{align}
+We know the process is internally reversible, thus $\Delta U =0$:
+\begin{gather}
+  \Delta Q_{12} = \cancelto{0}{\Delta U_{12}} + W_{12}\\
+  W_{12} = \Delta Q_{12} = mRT_C \ln \left( \frac{V_2}{V_1} \right)
+\end{gather}\\
+\\
+\underline{Process $2 \to 3$:}
+\begin{equation}
+  p_2V_2^\kappa = p_3V_3^\kappa \Rightarrow p = p_2 \left( \frac{V_2}{V} \right)^\kappa
+\end{equation}
+Using this equation we can compute the work as follows:
+\begin{align}
+  W_{23} = \int_2^3 p\,dV &= p_2V_2^\kappa \int_2^3 V^{-\kappa}\,dV\\
+                          &= \left.\frac{p_2V_2^\kappa}{1 - \kappa}(1-\kappa)\right|_2^3\\
+                          &= \frac{p_2V_2^\kappa}{1-\kappa}(V_3^{1-\kappa} - V_2^{1-\kappa})\\
+                          &= \frac{mR(T_H - T_C)}{\kappa - 1}
+\end{align}\\
+\\
+\underline{Process $3 \to 4$:}
+\begin{align}
+  W_{34} = \int_3^4 p\,dV &= \int_3^4 \frac{mRT_H}{V}\,dV\\
+                          &= mRT_H \ln \left( \frac{V_4}{V_3} \right)
+\end{align}
+We again know that $\Delta U = 0$, which leads to the following:
+\begin{gather}
+  \Delta Q_{34} = \cancelto{0}{\Delta U_{34}} + W_{34}\\
+  W_{34} = \Delta Q_{34} = mRT_H \ln \left( \frac{V_4}{V_3} \right)
+\end{gather}\\
+\\
+\underline{Process $4 \to 1$:}
+Note that $T_1 = T_C$ and that $T_4 = T_H$.
+\begin{align}
+  W_{41} = \int_4^1 p\,dV &= \frac{-mR(T_C - T_H)}{\kappa - 1}\\
+                          &= \frac{mR(T_H - T_C}{\kappa - 1}
+\end{align}\\
+We now have all the individual components which add up to the total work of the cycle. The thermal efficiency of a cycle is described by:
+\begin{equation}
+  \eta_{cycle} = \frac{W_{cycle}}{Q_H} \quad \text{where} \quad W_{cycle} = \Sigma W
+\end{equation}
+This ends us up with the following:
+\begin{equation}
+  \eta_{cycle} = \frac{W_{12} + W_{23} + W_{34} + W_{41}}{Q_{34}}
+\end{equation}
+Walking through the algebra\footnote{I can't be fucked to write it down here cause it's a lengthy one} then gives the following relation:
+\begin{equation}
+  \eta_{cycle} = \frac{T_H - T_C}{T_H} = 1 - \frac{T_C}{T_H}
+\end{equation}
+
+\subsection{Introducing entropy}
+TODO, can't be asked to do it now though
 
 \end{document}
