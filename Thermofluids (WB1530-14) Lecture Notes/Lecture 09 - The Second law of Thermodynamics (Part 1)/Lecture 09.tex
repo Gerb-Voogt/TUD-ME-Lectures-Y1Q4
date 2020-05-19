@@ -62,7 +62,7 @@
 \begin{document}
 \setcounter{section}{8}
 \setcounter{equation}{0}
-\section{Thermofluids Lecture 9: The second Law of Thermodynamics (Part 1)}
+\section{Thermofluids Lecture 9: The second Law of Thermodynamics (Part 1) (18/05/2020)}
 
 
 \subsection{Introduction to the second law}
@@ -178,6 +178,71 @@ Walking through the algebra\footnote{I can't be fucked to write it down here cau
 \end{equation}
 
 \subsection{Introducing entropy}
-TODO, can't be asked to do it now though
+Entropy is a bit of an abstract property that is difficult to conceptualize. It can be thought of as the amount of disorder of a given system. In general without an external source disorder only increase. For example atoms would like to diffuse as much as possible across a space as this is the most chaotic state. This means that for a closed system entropy will always be greater then (or equal to in some idealized cases) to $0$. The universe can be considered an isolated system, thus the total entropy is always increasing. Marching us closer and closer to the inevitable end of time by heat death of the universe! Note that entropy is not a conserved quantity. There is no "conservation of entropy" law.\\
+Consider the thermal efficiency of a given Carnot cycle:
+\begin{equation*}
+  \eta_{cycle} = 1 - \frac{Q_C}{Q_H} = 1 - \frac{T_C}{T_H}
+\end{equation*}
+This implies the following:
+\begin{equation*}
+  \frac{Q_C}{Q_H} = \frac{T_C}{T_H} \Rightarrow \frac{Q_H}{T_H} - \frac{Q_C}{T_C} = 0
+\end{equation*}
+This extends to any random Carnot cycle of $n$ steps:
+\begin{equation*}
+  \frac{Q_{12}}{T_{12}} + \frac{Q_{23}}{T_{23}} + \cdots + \frac{Q_{n1}}{T_{n1}} = 0
+\end{equation*}
+Since a Carnot cycle is perfectly reversible all the internal energies should equal $0$, thus:
+\begin{equation*}
+  \Delta U_{12} + \Delta U_{23} + \cdots + \Delta U_{n1} = 0
+\end{equation*}
+We know that this total sum of variables equaling $0$ only happens to state variables. Yet $Q$ is not a state variable. Thus Clausius defined a new state variable: Entropy, denoted as $S$.
+\begin{equation}
+  \Delta S_{12} + \Delta S_{23} + \cdots + \Delta S_{n1} = 0
+\end{equation}
+The variable $S$, entropy, is used to denote the direction of processes. In diffential form entropy for an internally reversible process is given as:
+\begin{equation}
+  \left. \frac{\delta Q}{T} \right|_{int,rev} = dS
+\end{equation}
+For internally reversible processes we can write this as a cyclic integral (read an integral along the entire cycle) as follows:
+\begin{equation}
+  \oint \frac{\delta Q}{T} = \oint dS = 0
+\end{equation}
+
+
+\subsection{The Clausius inequality}
+The Clausius inequality is given as:
+\begin{equation}
+  \oint \frac{\delta Q}{T} \leq 0
+\end{equation}
+This expression basicly states that a system undergoing a cycle returns to it's original state.\\
+Consider a cycle with 2 processes. The process $1 \to 2$ which is either reversible or irreversible and process $2 \to 1$ which is internally reversible. Then applying the Clausius inequality we get:
+\begin{equation}
+  \oint \frac{\delta Q}{T} = \int_1^2 \frac{\delta Q}{T} + \int_2^1 \left. \frac{\delta Q}{T} \right|_{int,rev} \leq 0
+\end{equation}
+Since $\left. \frac{\delta Q}{T}\right|_{int,rev} = dS$:
+\begin{equation}
+  \int_1^2 \frac{\delta Q}{T} + \int_2^1 dS = \int_1^2 \frac{\delta Q}{T} + S_1 - S_2 \leq 0
+\end{equation}
+Which rearranges to:
+\begin{equation}
+  S_2 - S_1 \geq \int_1^2 \frac{\delta Q}{T}
+\end{equation}
+The term $\int_1^2 \delta Q/T$ represents the entropy transfer by heat. We know that $S_2 - S_1 = \Delta S$. For a reversible system this becomes equal to entropy transfer. The inequality sign however still implies that some entropy is generated (might still be equal to 0 for idealized processes):
+\begin{equation}
+  \Delta S_{sys} = S_2 - S_1 = \int_1^2 \frac{\delta Q}{T} + S_{gen}
+\end{equation}
+$S_{gen}$ might sometimes also be noted by the letter $\sigma$. Note that this increase in entropy principle does not actually imply entropy of a system cannot be negative. Water freezing for example goes from a more chaotic state (liquid) to a more ordered state (solid). This implies a decrease in entropy. This may very well be valid as long as the entropy generated is equal to $0$ and the sum of the entropy of the system and the surroundings is positive.
+\begin{equation}
+  S_{gen} = \Delta S_{total} = \Delta S_{sys} + \Delta S_{sur} \geq 0
+\end{equation}
+We can say the following about entropy generated:
+\begin{equation}
+  S_{gen}
+  \begin{cases}
+    > 0, \text{irreversible process}\\
+    = 0, \text{reversible process}\\
+    < 0, \text{impossible process}
+  \end{cases}
+\end{equation}
 
 \end{document}
