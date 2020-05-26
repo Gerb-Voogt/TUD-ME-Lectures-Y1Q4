@@ -1,0 +1,128 @@
+\documentclass[11pt, a4paper]{article}
+
+\usepackage{graphicx}
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{subfig}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mhchem}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{cancel}
+
+\graphicspath{ {./images} }
+\newcommand*{\qed}{\hfill\ensuremath{\quad\square}}%
+\newcommand*{\rad}{\ensuremath{\,\text{rad}}}
+\newcommand*{\R}{\ensuremath{\mathbb{R}}}
+\newcommand*{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand*{\Re}{\operatorname{Re}}
+\renewcommand*{\Im}{\operatorname{Im}}
+\renewcommand*{\epsilon}{\varepsilon}
+\renewcommand*{\phi}{\varphi}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newtheorem{theorem}{Theorem}
+
+%------------------------------------------------
+%Templates for images and figures
+% \begin{figure}[h]
+%   \centering
+%   \subfloat[caption 1]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \qquad
+%   \subfloat[caption 2]{{\includegraphics[width=30mm]{images/placeholder.png}}}%
+%   \caption{Description}
+% \end{figure}
+
+% \begin{figure}[h]
+%   \centerline{\includegraphics[width=50mm]{images/placeholder.png}}
+%   \caption{Description}
+% \end{figure}
+
+%Template for a simple table 
+%\begin{table}[h]
+%   \caption{Description} %title of the table
+%   \centering % centering table
+%   \begin{tabular}{l rr} % creating three columns
+%     \hline\hline %inserting double-line
+%     & & \\ [0.5ex] % Insert half line vertical spacing
+%     \hline % inserts single-line
+%     & & \\ 
+%     & & \\
+%     & & \\
+%     & & \\
+%   \hline % inserts single-line
+%   \end{tabular}
+%   \label{tab:hresult}
+% \end{table}
+%-----------------------------------------------
+
+\begin{document}
+\setcounter{section}{8}
+\setcounter{equation}{0}
+
+\section{Linear Algebra 2 Lecture 9: Symmetric Matrices (26/05/2020)}
+
+
+\subsection{Symmetric matrices}
+A matrix $A$ is considered to be symmetric if it's equal to it's own transpose:
+\begin{equation}
+  A = A^T
+\end{equation}
+The eigenvectors of a symmetric matrix that correspond to distinct eigenvalues are always orthogonal. This can be proven as follows: Let $\lambda_1$ and $\lambda_2$ be distinct eigenvalues of $A$ with corresponding eigenvectors $\vec{v}_1$ and $\vec{v}_2$. Then:
+\begin{align*}
+  \lambda_1 \vec{v}_1 \cdot \vec{v}_2 &= (\lambda_1 \vec{v}_1^T)\vec{v}_2 = (A\vec{v}_1)^T\vec{v}_2\\
+  &= (\vec{v}_1^TA^T) \vec{v}_2 = \vec{v}_1^T(A\vec{v}_2)\\
+  &= \vec{v}_1^T(\lambda_2 \vec{v}_2)\\
+  &= \lambda \vec{v}_1^T\vec{v}_2 = \lambda_2 \vec{v}_1 \cdot \vec{v}_2
+\end{align*}
+Hence we end up with the expression $\lambda_1 \vec{v}_1 \cdot \vec{v}_2 = \lambda_2 \vec{v}_1 \cdot \vec{v}_2$. This implies:
+\begin{equation*}
+  (\lambda_1 - \lambda_2)\vec{v}_1 \cdot \vec{v}_2 = 0
+\end{equation*}
+Since $\lambda_1 \neq \lambda_2$ as we defined these to be distinct eigenvalues of $A$ we can assert that $\lambda_1 - \lambda_2 \neq 0$. This means that for the previously found expression to equal $0$ the inner product of $\vec{v}_1$ and $\vec{v}_2$ must be $0$. This means that the vectors must be orthogonal.\\
+Furthermore a symmetric matrix will always only have real eigenvalues. This can be proven using a hermitian transpose\footnote{Taking the transpose of a matrix and the complex conjugate of all of it;s entries} but I'm not going to do that here since Hermitian transposes are not covered in the course.
+
+
+\subsection{Orthogonally diagonalizable matrices}
+An $n\times n$ matrix is orthogonally diagonalizable if there exists an orthogonal matrix $P$ and a diagonalizable matrix $D$ such that $A = PDP^{-1}$. Since $P$ is defined to be orthogonal this theorem is the same as saying:
+\begin{equation*}
+  A = PDP^T
+\end{equation*}
+Note that the columns of $P$ are the eigenvectors of $A$ and form a basis for $\R^n$ space. Such a diagonalization requires $n$ linearly independent orthonormal eigenvectors. Using this information we can state that $A$ is symmetric iff $A$ is orthogonally diagonalizable, since:
+\begin{equation*}
+  A^T = (PDP^T)^T = P^{TT} D P^T = PDP^T = A
+\end{equation*}
+
+
+\subsection{The spectral theorem}
+The set of eigenvalues of a matrix $A$ is sometimes called the spectrum of $A$. The following description of the eigenvalues is sometimes called the spectral theorem:\\
+\textit{
+  An $n \times n$ matrix $A$ has the following properties:
+  \begin{itemize}
+    \item $A$ has $n$ eigenvalues$\in \R^n$, counting multiplicities
+    \item dim$(E_\lambda)$ for eacht $\lambda$ equals the multiplicity of $\lambda$ as a root of the characteristic equation
+    \item The eigenspaces are mutually orthogonal, in the sense that eigenvectors corresponding to different eigenvalues are orthogonal
+    \item $A$ is orthogonally diagonalizable
+  \end{itemize}
+}
+
+\subsection{Algorithm for orthogonal diagonalization}
+\begin{enumerate}
+  \item Compute the eigenvalues of $A$
+  \item For each eigenvalue: construct a basis of the corresponding eigenspace
+  \item For each eigenvalue: construct an orthonormal basis of the corresponding eigenspace (use the Gram-Schmidt process to orthogonalize if neccasary. Use scaling to normalize the basis vectors)
+  \item Construct a matrix $P$ using the basis vectors constructed is step 3 as columns
+  \item Construct a matric $D$ using the corresponding eigenvalues on the diagonal
+\end{enumerate}
+
+
+\end{document}
